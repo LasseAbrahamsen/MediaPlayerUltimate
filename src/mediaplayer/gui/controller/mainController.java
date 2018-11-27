@@ -23,17 +23,16 @@ import javafx.stage.Stage;
  * @author a
  */
 public class mainController implements Initializable {
-    
-    @FXML
-    private Button button;
+
     @FXML
     private Label nowPlayingLabel;
     
+    @FXML
     private void openNewSong(ActionEvent event) throws IOException{
        // Parent root = FXMLLoader.load(getClass().getResource("QuestionWindow.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newSong.fxml"));
         Parent root = (Parent) fxmlLoader.load();
-        //QuestionWindowController controller = fxmlLoader.getController();
+        //WindowController controller = fxmlLoader.getController();
         //controller.setNameLabel(nameinput.getText());
         //controller.passMainController(this);
         Scene scene = new Scene(root);
@@ -50,7 +49,7 @@ public class mainController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        nowPlayingLabel.setText("You're Not Playing a Song :)");
+    nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     
 }
