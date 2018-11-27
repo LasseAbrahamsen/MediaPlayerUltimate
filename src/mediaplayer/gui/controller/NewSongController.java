@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -21,6 +22,12 @@ public class NewSongController implements Initializable {
 
     @FXML
     private Label testLabel;
+    @FXML
+    private TextField textfieldTitle;
+    @FXML
+    private TextField textfieldArtist;
+    @FXML
+    private TextField textfieldFile;
 
     /**
      * Initializes the controller class.
