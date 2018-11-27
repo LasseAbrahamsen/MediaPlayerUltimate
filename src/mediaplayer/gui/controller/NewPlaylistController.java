@@ -3,24 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mediaplayer.gui.view;
+package mediaplayer.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
  * @author a
  */
-public class NewSongController implements Initializable {
-
-    @FXML
-    private Label testLabel;
+public class NewPlaylistController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -29,10 +23,5 @@ public class NewSongController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-        @FXML
-    private void handleButtonAction(ActionEvent event) {
-    testLabel.setText("You're Not Playing a Song :)");
-    }
     
 }

@@ -59,7 +59,7 @@ public class mainController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-    nowPlayingLabel.setText("You're Not Playing a Song :)");
+        nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     
 }
