@@ -33,7 +33,18 @@ public class mainController implements Initializable {
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("gui/view/newSong.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("mediaplayer/gui/view/newSong.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/view/newSong.fxml"));
+        //Parent root = (Parent) fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void openNewPlaylist(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("mediaplayer/gui/view/newSong.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/view/newSong.fxml"));
         //Parent root = (Parent) fxmlLoader.load();
         Scene scene = new Scene(root);
