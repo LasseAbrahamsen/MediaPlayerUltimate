@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+//import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,27 +27,25 @@ import javafx.stage.Stage;
 public class mainController implements Initializable {
 
     @FXML private Label nowPlayingLabel;
+    
     @FXML
     private Button button;
-    @FXML
-    private Button btn1;
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("mediaplayer/gui/view/newSong.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/view/newSong.fxml"));
         //Parent root = (Parent) fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) new Stage();
         stage.setScene(scene);
         stage.show();
+        //((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
     @FXML
     private void openNewPlaylist(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("mediaplayer/gui/view/newSong.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/view/newSong.fxml"));
-        //Parent root = (Parent) fxmlLoader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newPlaylist.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) new Stage();
         stage.setScene(scene);
