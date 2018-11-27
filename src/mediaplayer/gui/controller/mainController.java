@@ -32,9 +32,9 @@ public class mainController implements Initializable {
     @FXML
     private Button button;
     @FXML
-    private ListView<?> Playlist;
+    private ListView<?> playlistView;
     @FXML
-    private ListView<?> Song;
+    private ListView<?> songView;
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
@@ -67,4 +67,10 @@ public class mainController implements Initializable {
         nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     
+    @FXML
+    private void exitAction(ActionEvent event) throws InterruptedException {
+        nowPlayingLabel.setText("bye!");
+        Thread.sleep(2000);
+        System.exit(0);
+    }
 }
