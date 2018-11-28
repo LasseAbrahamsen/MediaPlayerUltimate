@@ -15,12 +15,10 @@ import javafx.fxml.Initializable;
 //import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import mediaplayer.dal.DBConnect;
 import mediaplayer.dal.SongDAO;
 
 /**
@@ -31,13 +29,9 @@ public class mainController implements Initializable {
     
     //DBConnect test = new DBConnect();
     @FXML private Label nowPlayingLabel;
-    
-    @FXML
-    private Button button;
-    @FXML
-    private ListView<?> playlistView;
-    @FXML
-    private ListView<?> songView;
+    @FXML private ListView<?> playlistView;
+    @FXML private ListView<?> songView;
+    @FXML private TextField TextFieldFilter;
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
@@ -74,13 +68,11 @@ public class mainController implements Initializable {
     @FXML
     private void testCreateSong(ActionEvent event) throws IOException {
         SongDAO test = new SongDAO();
-        test.createSong("Best Song 2018", "Lasse", "Melodic Death Metal", 2018, 13.37);
+        test.createSong("Megan", "Megan", "Pop", 2018, 10.01);
     }
     
     @FXML
     private void exitAction(ActionEvent event) throws InterruptedException {
-        nowPlayingLabel.setText("bye!");
-        Thread.sleep(2000);
         System.exit(0);
     }
 }

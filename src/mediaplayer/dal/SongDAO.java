@@ -27,12 +27,6 @@ public class SongDAO {
     this.ds = new SQLServerDataSource();
         DBConnect connectionInfo = new DBConnect();
         List<String> infoList = connectionInfo.getDatabaseInfo();
-        /*
-        ds.setDatabaseName(infoList.get(0));
-        ds.setUser(infoList.get(1));
-        ds.setPassword(infoList.get(2));
-        ds.setPortNumber(Integer.parseInt(infoList.get(3)));
-        ds.setServerName(infoList.get(4));*/
         ds.setDatabaseName(infoList.get(0));
         ds.setUser(infoList.get(1));
         ds.setPassword(infoList.get(2));
@@ -40,11 +34,12 @@ public class SongDAO {
         ds.setServerName(infoList.get(4));
     }
     
-        public Song createSong(String title, String artist, String genre, int year, double length) {
+    public Song createSong(String title, String artist, String genre, int year, double length) {
         Song s = null;
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO MusicTable(title, artist, genre, year, length) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO MusicTableV2(title, artist, genre, year, length) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
+            //stmt.setInt(1, s.getId());
             stmt.setString(1, title);
             stmt.setString(2, artist);
             stmt.setString(3, genre);
@@ -61,5 +56,64 @@ public class SongDAO {
         return s;
     }
     
+    /*
+    public void updatePerson(Person p)
+    {
+        try (Connection con = ds.getConnection()){
+           String sql = "UPDATE Person SET name=?, job=? "
+                   + "WHERE cprno=?";
+           PreparedStatement stmt = con.prepareStatement(sql);
+           stmt.setString(1, p.getName());
+           stmt.setString(2, p.getJob());
+           stmt.setString(3, p.getCpr());
+           stmt.execute();
+        }
+        catch (SQLServerException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
     
+    /*
+
+    public void deletePerson(Person p) {
+        try (Connection con = ds.getConnection()) {
+            String sql = "DELETE FROM Mock WHERE cprno=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, p.getCpr());
+            stmt.execute();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
+    /*
+    public List<Person> getAllPersons(){
+        List<Person> persons = new ArrayList();
+        try (Connection con = ds.getConnection()) {
+            String sqlStatement = "SELECT * FROM Mock";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sqlStatement);
+            while(rs.next()) {
+                String cpr = rs.getString("cprno");
+                String name = rs.getString("name");
+                String job = rs.getString("job");
+                Person p = new Person(name,cpr,job);
+                persons.add(p);
+            }
+            
+        } catch (SQLServerException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return persons;
+    }*/
+
+
+
 }
