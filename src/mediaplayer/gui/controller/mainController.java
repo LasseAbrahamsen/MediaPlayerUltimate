@@ -20,13 +20,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import mediaplayer.dal.DBConnect;
 
 /**
  *
  * @author a
  */
 public class mainController implements Initializable {
-
+    
+    DBConnect test = new DBConnect();
+    
     @FXML private Label nowPlayingLabel;
     
     @FXML
@@ -63,7 +66,8 @@ public class mainController implements Initializable {
     }    
 
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws IOException {
+        test.getItemsFromList();
         nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     

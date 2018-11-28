@@ -29,7 +29,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewPlaylist" text="New" />
                         <Button mnemonicParsing="false" text="Edit" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Delete" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
