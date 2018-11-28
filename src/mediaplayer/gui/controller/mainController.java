@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mediaplayer.dal.DBConnect;
+import mediaplayer.dal.SongDAO;
 
 /**
  *
@@ -28,8 +29,7 @@ import mediaplayer.dal.DBConnect;
  */
 public class mainController implements Initializable {
     
-    DBConnect test = new DBConnect();
-    
+    //DBConnect test = new DBConnect();
     @FXML private Label nowPlayingLabel;
     
     @FXML
@@ -67,8 +67,14 @@ public class mainController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        test.getItemsFromList();
+        //test.getItemsFromList();
         nowPlayingLabel.setText("You're Not Playing a Song :)");
+    }
+    
+    @FXML
+    private void testCreateSong(ActionEvent event) throws IOException {
+        SongDAO test = new SongDAO();
+        test.createSong("Best Song 2018", "Lasse", "Melodic Death Metal", 2018, 13.37);
     }
     
     @FXML

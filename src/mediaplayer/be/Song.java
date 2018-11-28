@@ -10,5 +10,11 @@ package mediaplayer.be;
  * @author a
  */
 public class Song {
+
+    public Song(String title, String artist, String genre, int year, double length) {
+        
+    }
+    
+    
     
 }
