@@ -5,6 +5,7 @@
  */
 package mediaplayer.gui.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,11 +16,16 @@ import javafx.fxml.Initializable;
 //import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import mediaplayer.dal.SongDAO;
+
 
 /**
  *
@@ -32,6 +38,11 @@ public class mainController implements Initializable {
     @FXML private ListView<?> playlistView;
     @FXML private ListView<?> songView;
     @FXML private TextField TextFieldFilter;
+    @FXML private Button button;
+    @FXML private MediaView MediaView;
+    
+    private Media media;
+    private MediaPlayer mediaPlayer;
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
@@ -66,9 +77,14 @@ public class mainController implements Initializable {
     }
     
     @FXML
-    private void testCreateSong(ActionEvent event) throws IOException {
-        SongDAO test = new SongDAO();
-        test.createSong("Megan", "Megan", "Pop", 2018, 10.01);
+    private void testCreateSong(ActionEvent event) {
+        //SongDAO test = new SongDAO();
+        //test.createSong("Megan", "Megan", "Pop", 2018, 10.01);
+        String path = new File("src/life.mp3").getAbsolutePath();
+        media = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        MediaView.setMediaPlayer(mediaPlayer);
+        mediaPlayer.play();
     }
     
     @FXML

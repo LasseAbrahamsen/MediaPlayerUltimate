@@ -41,8 +41,8 @@ public class NewSongController implements Initializable {
     }    
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        testLabel.setText("You're Not Playing a Song :)");
+    private void saveTheSong(ActionEvent event) {
+        //implement this
     }
     
     @FXML
@@ -55,5 +55,26 @@ public class NewSongController implements Initializable {
         int returnVal = fc.showOpenDialog(aComponent);
         textfieldFile.setText("Implement this");
     }
+    
+    /*
+    better way of selecting files from directory:
+    @FXML
+    private void chooseURL(ActionEvent event) {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
+        chooser.setDialogTitle("Select song database");
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "MP3 and Wav files", "mp3",".wav");
+        chooser.setFileFilter(filter);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            urlField.setText(chooser.getSelectedFile().getAbsolutePath());
+            mediaPlayer = new MediaPlayer(new Media(new File(chooser.getSelectedFile().getAbsolutePath()).toURI().toString()));
+            mediaPlayer.setOnReady(() -> {
+                timeField.setText("" + mediaPlayer.getMedia().getDuration().toSeconds());
+            });
+        }
+    }
+    */
     
 }
