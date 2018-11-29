@@ -24,9 +24,9 @@ public class SongDAO {
     SQLServerDataSource ds;
     
     public SongDAO() {
-    this.ds = new SQLServerDataSource();
-        DBConnect connectionInfo = new DBConnect();
-        List<String> infoList;
+        this.ds = new SQLServerDataSource();
+        DBConnect connectionInfo = new DBConnect(); 
+        List<String> infoList; 
         try {
             infoList = connectionInfo.getDatabaseInfo();
             ds.setDatabaseName(infoList.get(0));
@@ -34,6 +34,7 @@ public class SongDAO {
             ds.setPassword(infoList.get(2));
             ds.setPortNumber(Integer.parseInt(infoList.get(3)));
             ds.setServerName(infoList.get(4));
+            
         } catch (IOException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

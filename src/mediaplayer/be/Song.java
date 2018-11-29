@@ -20,6 +20,11 @@ public class Song {
         this.length = length;
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" + "title=" + title + ", artist=" + artist + ", genre=" + genre + ", year=" + year + ", length=" + length + ", id=" + id + '}';
+    }
     
     public int getId() {
         return id;

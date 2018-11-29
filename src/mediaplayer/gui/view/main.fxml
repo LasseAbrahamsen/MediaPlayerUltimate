@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="814.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediaplayer.gui.controller.mainController">
+<AnchorPane id="AnchorPane" prefHeight="814.0" prefWidth="1505.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediaplayer.gui.controller.mainController">
     <children>
         <Button fx:id="button" layoutX="875.0" layoutY="752.0" onAction="#exitAction" text="Close" />
       <HBox layoutX="-1.0" layoutY="196.0" prefHeight="556.0" prefWidth="956.0" spacing="50.0">
@@ -26,7 +28,7 @@
                      <font>
                         <Font name="Gill Sans Ultra Bold" size="15.0" />
                      </font></Label>
-                  <ListView fx:id="playlistView" prefHeight="438.0" prefWidth="212.0" />
+                  <ListView fx:id="listviewPlaylist" prefHeight="438.0" prefWidth="212.0" />
                   <HBox prefHeight="42.0" prefWidth="212.0" spacing="5.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewPlaylist" text="New" />
@@ -71,7 +73,7 @@
                         <Font name="Gill Sans Ultra Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="songView" prefHeight="438.0" prefWidth="400.0" />
+                  <ListView fx:id="listviewSongs" prefHeight="438.0" prefWidth="400.0" />
                   <HBox prefHeight="39.0" prefWidth="393.0" spacing="5.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewSong" text="New" />
@@ -112,5 +114,14 @@
       </HBox>
       <MediaView fx:id="MediaView" fitHeight="200.0" fitWidth="200.0" layoutX="7.0" layoutY="14.0" />
       <Label layoutX="214.0" layoutY="137.0" text="mediaview guys" />
+      <TableView fx:id="tableViewSongs" layoutX="955.0" layoutY="243.0" prefHeight="438.0" prefWidth="366.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Title" />
+          <TableColumn prefWidth="72.0" text="Artist" />
+            <TableColumn prefWidth="72.0" text="Genre" />
+            <TableColumn prefWidth="72.0" text="Year" />
+            <TableColumn prefWidth="72.0" text="Length" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

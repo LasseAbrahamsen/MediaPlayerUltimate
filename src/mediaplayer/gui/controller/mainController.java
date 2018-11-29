@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -37,8 +38,9 @@ public class mainController implements Initializable {
     
     //DBConnect test = new DBConnect();
     @FXML private Label nowPlayingLabel;
-    @FXML private ListView<?> playlistView;
-    @FXML private ListView<Song> songView;
+    @FXML private ListView<?> listviewPlaylist;
+    @FXML private ListView<Song> listviewSongs;
+    @FXML private TableView<?> tableViewSongs;
     @FXML private TextField TextFieldFilter;
     @FXML private Button button;
     @FXML private MediaView MediaView;
@@ -70,7 +72,8 @@ public class mainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //songView.setItems(Model.getSongs());
+        listviewSongs.setItems(model.getSongs());
+        //use tableviewtableViewSongs.set;
     }    
 
     private void handleButtonAction(ActionEvent event) {
@@ -91,7 +94,6 @@ public class mainController implements Initializable {
         mediaPlayer = new MediaPlayer(media);
         MediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
-        media.durationProperty();
     }
     
     
@@ -105,5 +107,5 @@ public class mainController implements Initializable {
         model.loadAllSongs();
         
     }
-    //Song clickedSong = songView.getSelectionModel().getSelectedItem();
+    //Song clickedSong = listviewSongs.getSelectionModel().getSelectedItem();
 }
