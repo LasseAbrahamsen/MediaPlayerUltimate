@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -36,11 +39,18 @@ import mediaplayer.gui.model.Model;
  */
 public class mainController implements Initializable {
     
-    //DBConnect test = new DBConnect();
+    private ObservableList<Song> observableListSong;
+    
+    //DBConnect test = new DBConnect();   test get items from list
     @FXML private Label nowPlayingLabel;
     @FXML private ListView<?> listviewPlaylist;
     @FXML private ListView<Song> listviewSongs;
-    @FXML private TableView<?> tableViewSongs;
+    @FXML private TableView<Song> tableViewSongs;
+    @FXML private TableColumn<Song, String> titleCol;
+    @FXML private TableColumn<Song, String> artistCol;
+    @FXML private TableColumn<Song, String> genreCol;
+    @FXML private TableColumn<Song, Integer> yearCol;
+    @FXML private TableColumn<Song, Double> lengthCol;
     @FXML private TextField TextFieldFilter;
     @FXML private Button button;
     @FXML private MediaView MediaView;
@@ -72,12 +82,20 @@ public class mainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        observableListSong = model.getSongs();
         listviewSongs.setItems(model.getSongs());
-        //use tableviewtableViewSongs.set;
+        
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        artistCol.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        lengthCol.setCellValueFactory(new PropertyValueFactory<>("length"));
+        
+        tableViewSongs.setItems(observableListSong);
     }    
 
     private void handleButtonAction(ActionEvent event) {
-        //test.getItemsFromList();
+        //test.getItemsFromList(); this is from DBConnect
         nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     

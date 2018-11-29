@@ -29,5 +29,5 @@ public class Model {
     {
         songs.clear();
         songs.addAll(sdao.getAllSongs());
-    }  
+    }
 }

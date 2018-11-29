@@ -116,12 +116,20 @@
       <Label layoutX="214.0" layoutY="137.0" text="mediaview guys" />
       <TableView fx:id="tableViewSongs" layoutX="955.0" layoutY="243.0" prefHeight="438.0" prefWidth="366.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Title" />
-          <TableColumn prefWidth="72.0" text="Artist" />
-            <TableColumn prefWidth="72.0" text="Genre" />
-            <TableColumn prefWidth="72.0" text="Year" />
-            <TableColumn prefWidth="72.0" text="Length" />
+          <TableColumn fx:id="titleCol" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="artistCol" prefWidth="72.0" text="Artist" />
+            <TableColumn fx:id="genreCol" prefWidth="72.0" text="Genre" />
+            <TableColumn fx:id="yearCol" prefWidth="72.0" text="Year" />
+            <TableColumn fx:id="lengthCol" prefWidth="72.0" text="Length" />
         </columns>
       </TableView>
+      <Label layoutX="955.0" layoutY="200.0" prefHeight="29.0" prefWidth="169.0" text="Songs Table">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Gill Sans Ultra Bold" size="15.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
