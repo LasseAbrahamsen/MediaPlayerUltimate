@@ -24,7 +24,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import mediaplayer.be.Song;
 import mediaplayer.dal.SongDAO;
+import mediaplayer.gui.model.Model;
 
 
 /**
@@ -36,13 +38,14 @@ public class mainController implements Initializable {
     //DBConnect test = new DBConnect();
     @FXML private Label nowPlayingLabel;
     @FXML private ListView<?> playlistView;
-    @FXML private ListView<?> songView;
+    @FXML private ListView<Song> songView;
     @FXML private TextField TextFieldFilter;
     @FXML private Button button;
     @FXML private MediaView MediaView;
     
     private Media media;
     private MediaPlayer mediaPlayer;
+    Model model = new Model();
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
@@ -67,28 +70,40 @@ public class mainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //songView.setItems(Model.getSongs());
     }    
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
+    private void handleButtonAction(ActionEvent event) {
         //test.getItemsFromList();
         nowPlayingLabel.setText("You're Not Playing a Song :)");
     }
     
     @FXML
-    private void testCreateSong(ActionEvent event) {
-        //SongDAO test = new SongDAO();
-        //test.createSong("Megan", "Megan", "Pop", 2018, 10.01);
+    private void testCreateSong(ActionEvent event) throws IOException {
+        SongDAO test = new SongDAO();
+        test.createSong("something", "Lasse", "Pop", 2018, 13.38);
+    }
+    
+    @FXML
+    public void testPlaySong(ActionEvent event)  {
         String path = new File("src/life.mp3").getAbsolutePath();
         media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         MediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
+        media.durationProperty();
+    }
+    
+    
+    @FXML
+    public void exitAction(ActionEvent event) throws InterruptedException {
+        System.exit(0);
     }
     
     @FXML
-    private void exitAction(ActionEvent event) throws InterruptedException {
-        System.exit(0);
+    public void loadSongList(ActionEvent event) {
+        model.loadAllSongs();
+        
     }
+    //Song clickedSong = songView.getSelectionModel().getSelectedItem();
 }

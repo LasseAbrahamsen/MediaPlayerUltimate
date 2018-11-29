@@ -12,8 +12,13 @@ public class Song {
     private double length;
     private int id;
    
-    public Song(String title, String artist, String genre, int year, double length) {
-        
+    public Song(String title, String artist, String genre, int year, double length, int id) {
+        this.title = title;
+        this.artist = artist;
+        this.genre = genre;
+        this.year = year;
+        this.length = length;
+        this.id = id;
     }
     
     public int getId() {
