@@ -18,12 +18,12 @@ public class Model {
     public ObservableList<Song> getSongs() {
         return songs;
     }
-    /*
-    public void deletePerson(Song s)
+    
+    public void deleteSong(Song s)
     {
-        persons.remove(s);
-        sdao.deletePerson(s); // Remove from DB
-    }*/
+        songs.remove(s);
+        sdao.deleteSong(s); // Remove from DB
+    }
     
     public void loadAllSongs()
     {

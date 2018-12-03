@@ -43,17 +43,20 @@ public class mainController implements Initializable {
     
     //DBConnect test = new DBConnect();   test get items from list
     @FXML private Label nowPlayingLabel;
-    @FXML private ListView<?> listviewPlaylist;
-    @FXML private ListView<Song> listviewSongs;
     @FXML private TableView<Song> tableViewSongs;
     @FXML private TableColumn<Song, String> titleCol;
     @FXML private TableColumn<Song, String> artistCol;
     @FXML private TableColumn<Song, String> genreCol;
     @FXML private TableColumn<Song, Integer> yearCol;
     @FXML private TableColumn<Song, Double> lengthCol;
+    @FXML private TableView<?> playlistTable;
+    @FXML private TableColumn<?, String> playlistNameCol;
+    @FXML private TableColumn<?, Integer> playlistAmountCol;
+    @FXML private TableColumn<?, Double> playlistTimeCol;
     @FXML private TextField TextFieldFilter;
     @FXML private Button button;
     @FXML private MediaView MediaView;
+    @FXML private ListView<?> listviewSongsonPlaylist;
     
     private Media media;
     private MediaPlayer mediaPlayer;
@@ -62,8 +65,6 @@ public class mainController implements Initializable {
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/view/newSong.fxml"));
-        //Parent root = (Parent) fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) new Stage();
         stage.setScene(scene);
@@ -83,7 +84,6 @@ public class mainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         observableListSong = model.getSongs();
-        listviewSongs.setItems(model.getSongs());
         
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistCol.setCellValueFactory(new PropertyValueFactory<>("artist"));
@@ -92,6 +92,9 @@ public class mainController implements Initializable {
         lengthCol.setCellValueFactory(new PropertyValueFactory<>("length"));
         
         tableViewSongs.setItems(observableListSong);
+        model.loadAllSongs();
+        
+        
     }    
 
     private void handleButtonAction(ActionEvent event) {
@@ -122,8 +125,12 @@ public class mainController implements Initializable {
     
     @FXML
     public void loadSongList(ActionEvent event) {
-        model.loadAllSongs();
-        
+        model.loadAllSongs();  
     }
-    //Song clickedSong = listviewSongs.getSelectionModel().getSelectedItem();
+    
+    @FXML
+    public void deleteSelectedSong(ActionEvent event) {
+        Song clickedSong = tableViewSongs.getSelectionModel().getSelectedItem();
+        model.deleteSong(clickedSong);
+    }
 }

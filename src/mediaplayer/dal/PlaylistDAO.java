@@ -3,23 +3,26 @@ package mediaplayer.dal;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.List;
-import javafx.collections.FXCollections;
-import mediaplayer.be.Song;
+import mediaplayer.be.Playlist;
 
 /**
  *
  * @author a
  */
-public class SongDAO {
+public class PlaylistDAO {
     
     SQLServerDataSource ds;
     
-    public SongDAO() {
+    public PlaylistDAO() {
         this.ds = new SQLServerDataSource();
         DBConnect connectionInfo = new DBConnect(); 
         List<String> infoList; 
@@ -36,32 +39,30 @@ public class SongDAO {
         }
     }
     
-    public Song createSong(String title, String artist, String genre, int year, double length) {
-        Song s = null;
+    public Playlist createPlaylist(String name, int amount, double time) {
+        Playlist p = null;
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO MusicTableV2(title, artist, genre, year, length) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO MusicTableV2(name, amount, time) VALUES(?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             //stmt.setInt(1, s.getId());
-            stmt.setString(1, title);
-            stmt.setString(2, artist);
-            stmt.setString(3, genre);
-            stmt.setInt(4, year);
-            stmt.setDouble(5, length);
+            stmt.setString(1, name);
+            stmt.setInt(2, amount);
+            stmt.setDouble(3, time);
             stmt.execute();
-            s = new Song(title, artist, genre, year, length, getLastID());
-            return s;
+            p = new Playlist(name, amount, time, getLastIDPlaylist());
+            return p;
         } catch (SQLServerException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return s;
+        return p;
     }
     
-    public int getLastID() {
+    public int getLastIDPlaylist() {
         int lastID = -1;
         try (Connection con = ds.getConnection()){
-            PreparedStatement pstmt = con.prepareStatement("SELECT TOP(1) * FROM MusicTableV2 ORDER by id desc");
+            PreparedStatement pstmt = con.prepareStatement("SELECT TOP(1) * FROM PLAYLIST ORDER by id desc");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
@@ -79,17 +80,14 @@ public class SongDAO {
         }
     }
     
-    public void updateSong(Song s)
-    {
+    public void updatePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()){
-           String sql = "UPDATE MusicTableV2 SET title=?, artist=?, genre=?, year=?, length=? "
+           String sql = "UPDATE PLAYLIST SET name=?, amount=?, time=? "
                    + "WHERE id=?";
            PreparedStatement stmt = con.prepareStatement(sql);
-           stmt.setString(1, s.getTitle());
-           stmt.setString(2, s.getArtist());
-           stmt.setString(3, s.getGenre());
-           stmt.setInt(4, s.getYear());
-           stmt.setDouble(5, s.getLength());
+           stmt.setString(1, p.getName());
+           stmt.setInt(2, p.getAmount());
+           stmt.setDouble(3, p.getTime());
            stmt.execute();
         }
         catch (SQLServerException ex) {
@@ -100,11 +98,11 @@ public class SongDAO {
         }
     }
     
-    public void deleteSong(Song s) {
+    public void deletePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()) {
             String sql = "DELETE FROM MusicTableV2 WHERE id=?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, s.getId());
+            stmt.setInt(1, p.getId());
             stmt.execute();
         } catch (SQLServerException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
