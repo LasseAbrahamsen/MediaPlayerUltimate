@@ -9,6 +9,6 @@ package mediaplayer.bll;
  *
  * @author a
  */
-public class Logic {
+public class Facade {
     
 }

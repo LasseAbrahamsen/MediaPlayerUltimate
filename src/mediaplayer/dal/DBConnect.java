@@ -14,7 +14,7 @@ import java.util.List;
 public class DBConnect {
     
     public List<String> getDatabaseInfo() throws IOException {
-        List<String> info = new ArrayList();
+        List<String> loginInfo = new ArrayList();
         String source = "C:\\Users\\a\\Desktop\\MediaPlayer\\MediaPlayerUltimate\\src\\mediaplayer\\dal\\loginInfo.txt";
         //String source = "loginInfo.txt";
         File file = new File(source);
@@ -25,14 +25,14 @@ public class DBConnect {
             while ((line = reader.readLine()) != null) {
                 if (!line.isEmpty()) {
                     try {
-                        info.add(line);
+                        loginInfo.add(line);
                     } catch (Exception ex) {
                         System.out.println(ex);
                     }
                 }
             }
         }
-        return info;
+        return loginInfo;
     }
     
     //delet this. it's for testing purposes only

@@ -1,10 +1,14 @@
 package mediaplayer.be;
 
+import java.util.List;
+
 /**
  *
  * @author a
  */
 public class Playlist {
+    
+    private List<Song> songList;
     private String name;
     private int amount;
     private double time;
@@ -19,6 +23,14 @@ public class Playlist {
 
     public int getID() {
         return id;
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
     }
     
     public String getName() {

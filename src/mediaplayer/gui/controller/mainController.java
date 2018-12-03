@@ -28,9 +28,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import mediaplayer.be.Playlist;
 import mediaplayer.be.Song;
+import mediaplayer.bll.Manager;
 import mediaplayer.dal.SongDAO;
-import mediaplayer.gui.model.Model;
+import mediaplayer.dal.PlaylistDAO;
+import mediaplayer.gui.model.ModelPlaylist;
+import mediaplayer.gui.model.ModelSong;
 
 
 /**
@@ -40,6 +44,7 @@ import mediaplayer.gui.model.Model;
 public class mainController implements Initializable {
     
     private ObservableList<Song> observableListSong;
+    private ObservableList<Playlist> observableListPlaylist;
     
     //DBConnect test = new DBConnect();   test get items from list
     @FXML private Label nowPlayingLabel;
@@ -49,18 +54,19 @@ public class mainController implements Initializable {
     @FXML private TableColumn<Song, String> genreCol;
     @FXML private TableColumn<Song, Integer> yearCol;
     @FXML private TableColumn<Song, Double> lengthCol;
-    @FXML private TableView<?> playlistTable;
-    @FXML private TableColumn<?, String> playlistNameCol;
-    @FXML private TableColumn<?, Integer> playlistAmountCol;
-    @FXML private TableColumn<?, Double> playlistTimeCol;
-    @FXML private TextField TextFieldFilter;
+    @FXML private TableView<Playlist> playlistTable;
+    @FXML private TableColumn<Playlist, String> playlistNameCol;
+    @FXML private TableColumn<Playlist, Integer> playlistAmountCol;
+    @FXML private TableColumn<Playlist, Double> playlistTimeCol;
+    @FXML private TextField textFieldFilter;
     @FXML private Button button;
     @FXML private MediaView MediaView;
     @FXML private ListView<?> listviewSongsonPlaylist;
     
     private Media media;
     private MediaPlayer mediaPlayer;
-    Model model = new Model();
+    ModelSong songModel = new ModelSong();
+    ModelPlaylist playlistModel = new ModelPlaylist();
     
     @FXML
     private void openNewSong(ActionEvent event) throws IOException{
@@ -83,7 +89,8 @@ public class mainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        observableListSong = model.getSongs();
+        observableListSong = songModel.getSongs();
+        observableListPlaylist = playlistModel.getPlaylists();
         
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistCol.setCellValueFactory(new PropertyValueFactory<>("artist"));
@@ -92,7 +99,12 @@ public class mainController implements Initializable {
         lengthCol.setCellValueFactory(new PropertyValueFactory<>("length"));
         
         tableViewSongs.setItems(observableListSong);
-        model.loadAllSongs();
+        songModel.loadAllSongs();
+        
+        playlistNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        playlistAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        playlistTimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        playlistTable.setItems(observableListPlaylist);
         
         
     }    
@@ -106,6 +118,12 @@ public class mainController implements Initializable {
     private void testCreateSong(ActionEvent event) throws IOException {
         SongDAO test = new SongDAO();
         test.createSong("something", "Lasse", "Pop", 2018, 13.38);
+    }
+    
+    @FXML
+    private void testCreatePlaylist(ActionEvent event) throws IOException {
+        PlaylistDAO testtwo = new PlaylistDAO();
+        testtwo.createPlaylist("UwU whats this?");
     }
     
     @FXML
@@ -125,12 +143,19 @@ public class mainController implements Initializable {
     
     @FXML
     public void loadSongList(ActionEvent event) {
-        model.loadAllSongs();  
+        songModel.loadAllSongs();
+        playlistModel.loadAllPlaylists();
     }
     
     @FXML
     public void deleteSelectedSong(ActionEvent event) {
         Song clickedSong = tableViewSongs.getSelectionModel().getSelectedItem();
-        model.deleteSong(clickedSong);
+        songModel.deleteSong(clickedSong);
+    }
+    
+    @FXML
+    public void searchSong(ActionEvent event) {
+        Manager testManager = new Manager();
+        testManager.searchinFilter(observableListSong, textFieldFilter.getText());
     }
 }

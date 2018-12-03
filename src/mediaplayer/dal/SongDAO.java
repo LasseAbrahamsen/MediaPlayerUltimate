@@ -22,15 +22,14 @@ public class SongDAO {
     public SongDAO() {
         this.ds = new SQLServerDataSource();
         DBConnect connectionInfo = new DBConnect(); 
-        List<String> infoList; 
+        List<String> loginInfo; 
         try {
-            infoList = connectionInfo.getDatabaseInfo();
-            ds.setDatabaseName(infoList.get(0));
-            ds.setUser(infoList.get(1));
-            ds.setPassword(infoList.get(2));
-            ds.setPortNumber(Integer.parseInt(infoList.get(3)));
-            ds.setServerName(infoList.get(4));
-            
+            loginInfo = connectionInfo.getDatabaseInfo();
+            ds.setDatabaseName(loginInfo.get(0));
+            ds.setUser(loginInfo.get(1));
+            ds.setPassword(loginInfo.get(2));
+            ds.setPortNumber(Integer.parseInt(loginInfo.get(3)));
+            ds.setServerName(loginInfo.get(4));
         } catch (IOException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
