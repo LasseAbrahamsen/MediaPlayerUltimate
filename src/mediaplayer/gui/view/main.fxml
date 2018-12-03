@@ -14,12 +14,12 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="814.0" prefWidth="1505.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediaplayer.gui.controller.mainController">
+<AnchorPane id="AnchorPane" prefHeight="811.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediaplayer.gui.controller.mainController">
     <children>
         <Button fx:id="button" layoutX="875.0" layoutY="752.0" onAction="#exitAction" text="Close" />
-      <HBox layoutX="-1.0" layoutY="196.0" prefHeight="556.0" prefWidth="956.0" spacing="50.0">
+      <HBox layoutX="-1.0" layoutY="196.0" prefHeight="556.0" prefWidth="1136.0" spacing="50.0">
          <children>
-            <VBox prefHeight="544.0" prefWidth="222.0" spacing="10.0">
+            <VBox prefHeight="546.0" prefWidth="279.0" spacing="10.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="227.0" text="Playlists">
                      <padding>
@@ -28,7 +28,13 @@
                      <font>
                         <Font name="Gill Sans Ultra Bold" size="15.0" />
                      </font></Label>
-                  <ListView fx:id="listviewPlaylist" prefHeight="438.0" prefWidth="212.0" />
+                  <TableView fx:id="playlistTable" prefHeight="441.0" prefWidth="241.0">
+                    <columns>
+                      <TableColumn fx:id="playlistNameCol" prefWidth="100.0" text="Name" />
+                      <TableColumn fx:id="playlistAmountCol" prefWidth="78.0" text="Amount" />
+                        <TableColumn fx:id="playlistTimeCol" prefWidth="78.0" text="Time" />
+                    </columns>
+                  </TableView>
                   <HBox prefHeight="42.0" prefWidth="212.0" spacing="5.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewPlaylist" text="New" />
@@ -53,7 +59,7 @@
                      <font>
                         <Font name="Gill Sans Ultra Bold" size="15.0" />
                      </font></Label>
-                  <ListView prefHeight="438.0" prefWidth="222.0">
+                  <ListView fx:id="listviewSongsonPlaylist" prefHeight="438.0" prefWidth="222.0">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding></ListView>
@@ -63,7 +69,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="460.0" prefWidth="403.0" spacing="10.0">
+            <VBox prefHeight="546.0" prefWidth="519.0" spacing="10.0">
                <children>
                   <Label text="Songs">
                      <padding>
@@ -73,12 +79,20 @@
                         <Font name="Gill Sans Ultra Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="listviewSongs" prefHeight="438.0" prefWidth="400.0" />
+                  <TableView fx:id="tableViewSongs" prefHeight="438.0" prefWidth="408.0">
+                    <columns>
+                      <TableColumn fx:id="titleCol" prefWidth="120.0" text="Title" />
+                      <TableColumn fx:id="artistCol" prefWidth="120.0" text="Artist" />
+                        <TableColumn fx:id="genreCol" prefWidth="120.0" text="Genre" />
+                        <TableColumn fx:id="yearCol" prefWidth="72.0" text="Year" />
+                        <TableColumn fx:id="lengthCol" prefWidth="72.0" text="Length" />
+                    </columns>
+                  </TableView>
                   <HBox prefHeight="39.0" prefWidth="393.0" spacing="5.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewSong" text="New" />
                         <Button mnemonicParsing="false" onAction="#loadSongList" text="Edit" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#deleteSelectedSong" text="Delete" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -106,30 +120,13 @@
          </font>
       </Label>
       <Label fx:id="nowPlayingLabel" layoutX="420.0" layoutY="163.0" prefHeight="21.0" prefWidth="522.0" />
-      <HBox layoutX="681.0" layoutY="127.0" prefHeight="41.0" prefWidth="272.0" spacing="10.0">
+      <HBox layoutX="669.0" layoutY="164.0" prefHeight="41.0" prefWidth="272.0" spacing="10.0">
          <children>
             <Label text="Filter:" />
             <TextField fx:id="TextFieldFilter" />
          </children>
       </HBox>
       <MediaView fx:id="MediaView" fitHeight="200.0" fitWidth="200.0" layoutX="7.0" layoutY="14.0" />
-      <Label layoutX="214.0" layoutY="137.0" text="mediaview guys" />
-      <TableView fx:id="tableViewSongs" layoutX="955.0" layoutY="243.0" prefHeight="438.0" prefWidth="366.0">
-        <columns>
-          <TableColumn fx:id="titleCol" prefWidth="75.0" text="Title" />
-          <TableColumn fx:id="artistCol" prefWidth="72.0" text="Artist" />
-            <TableColumn fx:id="genreCol" prefWidth="72.0" text="Genre" />
-            <TableColumn fx:id="yearCol" prefWidth="72.0" text="Year" />
-            <TableColumn fx:id="lengthCol" prefWidth="72.0" text="Length" />
-        </columns>
-      </TableView>
-      <Label layoutX="955.0" layoutY="200.0" prefHeight="29.0" prefWidth="169.0" text="Songs Table">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font name="Gill Sans Ultra Bold" size="15.0" />
-         </font>
-      </Label>
+      <Label layoutX="14.0" layoutY="4.0" text="mediaview guys" />
     </children>
 </AnchorPane>
