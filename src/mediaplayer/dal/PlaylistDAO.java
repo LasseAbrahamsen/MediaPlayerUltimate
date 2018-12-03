@@ -80,8 +80,7 @@ public class PlaylistDAO {
     
     public void updatePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()){
-           String sql = "UPDATE PLAYLIST SET name=?, amount=?, time=? "
-                   + "WHERE id=?";
+           String sql = "UPDATE PLAYLIST SET name=?, amount=?, time=? WHERE id=?";
            PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, p.getName());
            stmt.setInt(2, p.getAmount());

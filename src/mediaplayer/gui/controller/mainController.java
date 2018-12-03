@@ -14,10 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-//import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -46,7 +44,6 @@ public class mainController implements Initializable {
     private ObservableList<Song> observableListSong;
     private ObservableList<Playlist> observableListPlaylist;
     
-    //DBConnect test = new DBConnect();   test get items from list
     @FXML private Label nowPlayingLabel;
     @FXML private TableView<Song> tableViewSongs;
     @FXML private TableColumn<Song, String> titleCol;
@@ -59,7 +56,6 @@ public class mainController implements Initializable {
     @FXML private TableColumn<Playlist, Integer> playlistAmountCol;
     @FXML private TableColumn<Playlist, Double> playlistTimeCol;
     @FXML private TextField textFieldFilter;
-    @FXML private Button button;
     @FXML private MediaView MediaView;
     @FXML private ListView<?> listviewSongsonPlaylist;
     
@@ -69,17 +65,16 @@ public class mainController implements Initializable {
     ModelPlaylist playlistModel = new ModelPlaylist();
     
     @FXML
-    private void openNewSong(ActionEvent event) throws IOException{
+    private void openNewSong(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) new Stage();
         stage.setScene(scene);
         stage.show();
-        //((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
     @FXML
-    private void openNewPlaylist(ActionEvent event) throws IOException{
+    private void openNewPlaylist(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newPlaylist.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) new Stage();
@@ -105,14 +100,7 @@ public class mainController implements Initializable {
         playlistAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         playlistTimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         playlistTable.setItems(observableListPlaylist);
-        
-        
     }    
-
-    private void handleButtonAction(ActionEvent event) {
-        //test.getItemsFromList(); this is from DBConnect
-        nowPlayingLabel.setText("You're Not Playing a Song :)");
-    }
     
     @FXML
     private void testCreateSong(ActionEvent event) throws IOException {
@@ -135,9 +123,8 @@ public class mainController implements Initializable {
         mediaPlayer.play();
     }
     
-    
     @FXML
-    public void exitAction(ActionEvent event) throws InterruptedException {
+    public void exit(ActionEvent event) throws InterruptedException {
         System.exit(0);
     }
     

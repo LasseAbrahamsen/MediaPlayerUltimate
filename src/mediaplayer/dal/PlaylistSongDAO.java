@@ -41,7 +41,7 @@ public class PlaylistSongDAO {
             Logger.getLogger(PlaylistDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    // brain is dead :D
     public List<Song> fillSongsOnPlaylist() {
         List<Song> songs = new ArrayList();
         try (Connection con = ds.getConnection()) {
