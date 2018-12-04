@@ -29,7 +29,7 @@
                <children>
                   <Label prefHeight="30.0" prefWidth="44.0" text="File:" />
                   <TextField fx:id="textfieldFile" prefHeight="2.0" prefWidth="187.0" />
-                  <Button mnemonicParsing="false" onAction="#openSong" text="Choose.." />
+                  <Button mnemonicParsing="false" onAction="#chooseURL" text="Choose.." />
                </children>
             </HBox>
             <Label fx:id="testLabel" text="test" />

@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mediaplayer.gui.controller;
-/*
-import java.awt.Component
-import java.io.File;*/
+
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;/*
+import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;*/
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -31,7 +25,7 @@ public class NewSongController implements Initializable {
     @FXML private TextField textfieldArtist;
     @FXML private TextField textfieldFile;
     
-    //private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     /**
      * Initializes the controller class.
@@ -45,9 +39,9 @@ public class NewSongController implements Initializable {
     private void saveTheSong(ActionEvent event) {
         //implement this
     }
-    /*
+
     @FXML
-    private void chooseURL(ActionEvent event) {
+    private void chooseURL (ActionEvent event) {
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Desktop"));
         chooser.setDialogTitle("Select song ");
@@ -56,7 +50,7 @@ public class NewSongController implements Initializable {
         chooser.setFileFilter(filter); 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
             textfieldFile.setText(chooser.getSelectedFile().getAbsolutePath());
-            //mediaPlayer = new MediaPlayer(new Media(new File(chooser.getSelectedFile().getAbsolutePath()).toURI().toString())); // Sets up the media object in order to get time of the song
+            mediaPlayer = new MediaPlayer(new Media(new File(chooser.getSelectedFile().getAbsolutePath()).toURI().toString())); // Sets up the media object in order to get time of the song
         }
-    }*/
+    }
 }

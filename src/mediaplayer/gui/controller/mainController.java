@@ -55,9 +55,11 @@ public class mainController implements Initializable {
     @FXML private TableColumn<Playlist, String> playlistNameCol;
     @FXML private TableColumn<Playlist, Integer> playlistAmountCol;
     @FXML private TableColumn<Playlist, Double> playlistTimeCol;
+    @FXML private TableView<Song> SongsOnPlaylistTable;
+    @FXML private TableColumn<Song, Integer> songsOnPlaylistID;
+    @FXML private TableColumn<Song, String> songsOnPlaylistName;
     @FXML private TextField textFieldFilter;
     @FXML private MediaView MediaView;
-    @FXML private ListView<?> listviewSongsonPlaylist;
     
     private Media media;
     private MediaPlayer mediaPlayer;
@@ -100,6 +102,10 @@ public class mainController implements Initializable {
         playlistAmountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         playlistTimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         playlistTable.setItems(observableListPlaylist);
+        
+        songsOnPlaylistID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        songsOnPlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        SongsOnPlaylistTable.setItems(observableListSong);
     }    
     
     @FXML

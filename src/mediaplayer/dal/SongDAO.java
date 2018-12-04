@@ -80,7 +80,7 @@ public class SongDAO {
     
     public void updateSong(Song s)
     {
-        try (Connection con = ds.getConnection()){
+        try (Connection con = ds.getConnection()) {
            String sql = "UPDATE MusicTableV2 SET title=?, artist=?, genre=?, year=?, length=? "
                    + "WHERE id=?";
            PreparedStatement stmt = con.prepareStatement(sql);
@@ -112,7 +112,7 @@ public class SongDAO {
         }
     }
     
-    public List<Song> getAllSongs(){
+    public List<Song> getAllSongs() {
         List<Song> songs = new ArrayList();
         try (Connection con = ds.getConnection()) {
             String sqlStatement = "SELECT * FROM MusicTableV2";

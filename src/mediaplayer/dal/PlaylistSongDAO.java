@@ -29,7 +29,7 @@ public class PlaylistSongDAO {
     public PlaylistSongDAO() {
         this.ds = new SQLServerDataSource();
         DBConnect connectionInfo = new DBConnect(); 
-        List<String> loginInfo; 
+        List<String> loginInfo;
         try {
             loginInfo = connectionInfo.getDatabaseInfo();
             ds.setDatabaseName(loginInfo.get(0));

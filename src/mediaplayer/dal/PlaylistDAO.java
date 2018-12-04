@@ -43,7 +43,7 @@ public class PlaylistDAO {
     public Playlist createPlaylist(String name) {
         Playlist p = null;
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO PlaylistTable (name) VALUES(?,?,?)";
+            String sql = "INSERT INTO PlaylistTable (name) VALUES(?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
             stmt.execute();
@@ -80,11 +80,9 @@ public class PlaylistDAO {
     
     public void updatePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()){
-           String sql = "UPDATE PLAYLIST SET name=?, amount=?, time=? WHERE id=?";
+           String sql = "UPDATE PLAYLIST SET name=? WHERE id=?";
            PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, p.getName());
-           stmt.setInt(2, p.getAmount());
-           stmt.setDouble(3, p.getTime());
            stmt.execute();
         }
         catch (SQLServerException ex) {

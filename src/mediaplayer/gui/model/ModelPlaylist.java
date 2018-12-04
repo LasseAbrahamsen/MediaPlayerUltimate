@@ -3,7 +3,7 @@ package mediaplayer.gui.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mediaplayer.be.Playlist;
-import mediaplayer.dal.PlaylistDAO;
+import mediaplayer.bll.Facade;
 
 /**
  *
@@ -11,7 +11,7 @@ import mediaplayer.dal.PlaylistDAO;
  */
 public class ModelPlaylist {
     
-    PlaylistDAO pdao = new PlaylistDAO();
+    Facade logicFacade = new Facade();
     private ObservableList<Playlist> playlists = FXCollections.observableArrayList();
 
     public ObservableList<Playlist> getPlaylists() {
@@ -21,13 +21,13 @@ public class ModelPlaylist {
     public void deletePlaylist(Playlist p)
     {
         playlists.remove(p);
-        pdao.deletePlaylist(p); // Remove from DB
+        logicFacade.deletePlaylist(p); // Remove from DB
     }
     
     public void loadAllPlaylists()
     {
         playlists.clear();
-        playlists.addAll(pdao.getAllPlaylists());
+        playlists.addAll(logicFacade.getAllPlaylists());
     }
     
 }
