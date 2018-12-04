@@ -103,8 +103,8 @@ public class mainController implements Initializable {
         playlistTimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         playlistTable.setItems(observableListPlaylist);
         
-        songsOnPlaylistID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        songsOnPlaylistName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        songsOnPlaylistID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        songsOnPlaylistName.setCellValueFactory(new PropertyValueFactory<>("title"));
         SongsOnPlaylistTable.setItems(observableListSong);
     }    
     
@@ -115,14 +115,8 @@ public class mainController implements Initializable {
     }
     
     @FXML
-    private void testCreatePlaylist(ActionEvent event) throws IOException {
-        PlaylistDAO testtwo = new PlaylistDAO();
-        testtwo.createPlaylist("UwU whats this?");
-    }
-    
-    @FXML
     public void testPlaySong(ActionEvent event)  {
-        String path = new File("src/life.mp3").getAbsolutePath();
+        String path = new File("src/metallica.mp3").getAbsolutePath();
         media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         MediaView.setMediaPlayer(mediaPlayer);
@@ -138,6 +132,7 @@ public class mainController implements Initializable {
     public void loadSongList(ActionEvent event) {
         songModel.loadAllSongs();
         playlistModel.loadAllPlaylists();
+        songModel.fillSongsOnPlaylist(1);
     }
     
     @FXML
@@ -147,8 +142,21 @@ public class mainController implements Initializable {
     }
     
     @FXML
+    public void deleteSelectedPlaylist(ActionEvent event) {
+        Playlist clickedPlaylist = playlistTable.getSelectionModel().getSelectedItem();
+        playlistModel.deletePlaylist(clickedPlaylist);
+    }
+    
+    @FXML
     public void searchSong(ActionEvent event) {
         Manager testManager = new Manager();
         testManager.searchinFilter(observableListSong, textFieldFilter.getText());
     }
+    
+    @FXML
+    public void update(ActionEvent event) {
+        Song clickedSong = tableViewSongs.getSelectionModel().getSelectedItem();
+        songModel.updateSong(clickedSong);
+    }
+    
 }

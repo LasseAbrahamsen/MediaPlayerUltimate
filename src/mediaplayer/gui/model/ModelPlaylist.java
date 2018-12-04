@@ -30,4 +30,8 @@ public class ModelPlaylist {
         playlists.addAll(logicFacade.getAllPlaylists());
     }
     
+    public Playlist createPlaylist(String name) {
+        return logicFacade.createPlaylist(name);
+    }
+    
 }

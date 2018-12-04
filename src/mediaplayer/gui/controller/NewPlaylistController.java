@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mediaplayer.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import mediaplayer.dal.PlaylistDAO;
+import mediaplayer.gui.model.ModelPlaylist;
+import mediaplayer.gui.model.ModelSong;
 
 /**
  * FXML Controller class
@@ -17,6 +18,9 @@ import javafx.scene.control.TextField;
  * @author a
  */
 public class NewPlaylistController implements Initializable {
+    
+    ModelSong songModel = new ModelSong();
+    ModelPlaylist playlistModel = new ModelPlaylist();
 
     @FXML
     private TextField textfieldplaylistName;
@@ -27,6 +31,16 @@ public class NewPlaylistController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    @FXML
+    private void createPlaylist(ActionEvent event) throws IOException {
+        playlistModel.createPlaylist(textfieldplaylistName.getText());
+    }
+    
+    @FXML
+    private void close(ActionEvent event) {
+        Stage stage = (Stage) textfieldplaylistName.getScene().getWindow();
+        stage.close();
+    }
     
 }

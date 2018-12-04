@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -52,5 +53,11 @@ public class NewSongController implements Initializable {
             textfieldFile.setText(chooser.getSelectedFile().getAbsolutePath());
             mediaPlayer = new MediaPlayer(new Media(new File(chooser.getSelectedFile().getAbsolutePath()).toURI().toString())); // Sets up the media object in order to get time of the song
         }
+    }
+    
+    @FXML
+    private void close(ActionEvent event) {
+        Stage stage = (Stage) testLabel.getScene().getWindow();
+        stage.close();
     }
 }

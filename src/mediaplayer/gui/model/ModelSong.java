@@ -1,5 +1,6 @@
 package mediaplayer.gui.model;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import mediaplayer.be.Song;
@@ -28,5 +29,13 @@ public class ModelSong {
     {
         songs.clear();
         songs.addAll(logicFacade.getAllSongs());
+    }
+    
+    public List<Song> fillSongsOnPlaylist(int id) {
+        return logicFacade.fillSongsOnPlaylist(id);
+    }
+    
+    public void updateSong(Song s) {
+        logicFacade.updateSong(s);
     }
 }

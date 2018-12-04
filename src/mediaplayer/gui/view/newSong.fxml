@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="371.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediaplayer.gui.controller.NewSongController">
    <children>
-      <Button layoutX="510.0" layoutY="322.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="448.0" layoutY="322.0" mnemonicParsing="false" text="Save" />
       <Label layoutX="252.0" layoutY="14.0" text="Add new song" />
       <VBox layoutX="29.0" layoutY="75.0" prefHeight="240.0" prefWidth="404.0">
          <children>
@@ -35,6 +35,7 @@
             <Label fx:id="testLabel" text="test" />
          </children>
       </VBox>
-      <Button layoutX="433.0" layoutY="322.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="375.0" layoutY="322.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="515.0" layoutY="322.0" mnemonicParsing="false" onAction="#close" text="Close" />
    </children>
 </AnchorPane>

@@ -9,6 +9,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,21 +43,29 @@ public class PlaylistSongDAO {
         }
     }
     // brain is dead :D
-    public List<Song> fillSongsOnPlaylist() {
-        List<Song> songs = new ArrayList();
+    public List<Song> fillSongsOnPlaylist(int id) {
+        List<Song> songsList = new ArrayList();
         try (Connection con = ds.getConnection()) {
             String sqlStatement = "SELECT * FROM MusicTableV2 INNER JOIN playlistSongsTable ON MusicTableV2.id=playlistSongsTable.id";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sqlStatement);
+            PreparedStatement preparedStmt = con.prepareStatement(sqlStatement);
+            //preparedStmt.setInt(1, id);
+            ResultSet rs = preparedStmt.executeQuery();
             while(rs.next()) {
-                
+                String title = rs.getString("title");
+                String artist = rs.getString("artist");
+                String genre = rs.getString("genre");
+                int year = rs.getInt("year");
+                double length = rs.getDouble("length");
+                int idd = rs.getInt("id");
+                Song s = new Song(title, artist, genre, year, length, idd);
+                songsList.add(s);
             }
         } catch (SQLServerException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return songs;
+        return songsList;
     }
     
     

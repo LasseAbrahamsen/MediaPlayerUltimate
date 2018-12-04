@@ -38,7 +38,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#openNewPlaylist" text="New" />
                         <Button mnemonicParsing="false" text="Edit" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#deleteSelectedPlaylist" text="Delete" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -131,8 +131,8 @@
       <Label layoutX="14.0" layoutY="4.0" text="mediaview guys" />
       <Button layoutX="910.0" layoutY="158.0" mnemonicParsing="false" onAction="#searchSong" text="Button" />
       <Button layoutX="214.0" layoutY="768.0" mnemonicParsing="false" onAction="#testPlaySong" text="play a song" />
-      <Button layoutX="14.0" layoutY="768.0" mnemonicParsing="false" onAction="#testCreatePlaylist" text="create a playlist" />
       <Button layoutX="447.0" layoutY="768.0" mnemonicParsing="false" onAction="#loadSongList" text="load" />
-      <Button layoutX="697.0" layoutY="753.0" mnemonicParsing="false" onAction="#testCreateSong" text="create a song" />
+      <Button layoutX="696.0" layoutY="768.0" mnemonicParsing="false" onAction="#testCreateSong" text="create a song" />
+      <Button layoutX="502.0" layoutY="769.0" mnemonicParsing="false" text="butt" />
     </children>
 </AnchorPane>

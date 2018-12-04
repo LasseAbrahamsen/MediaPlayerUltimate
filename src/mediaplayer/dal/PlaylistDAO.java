@@ -95,7 +95,7 @@ public class PlaylistDAO {
     
     public void deletePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()) {
-            String sql = "DELETE FROM PLAYLIST WHERE id=?";
+            String sql = "DELETE FROM playlistTable WHERE id=?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, p.getID());
             stmt.execute();
@@ -115,7 +115,7 @@ public class PlaylistDAO {
             while(rs.next()) {
                 String name = rs.getString("name");
                 int id = rs.getInt("id");
-                List<Song> allSongs = playlistSongDAO.fillSongsOnPlaylist();
+                List<Song> allSongs = playlistSongDAO.fillSongsOnPlaylist(id);
                 Playlist p = new Playlist(name, allSongs.size(), countTime(allSongs), id);
                 p.setSongList(allSongs);
                 playlists.add(p);

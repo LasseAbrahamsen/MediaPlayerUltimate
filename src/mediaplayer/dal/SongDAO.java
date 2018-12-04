@@ -40,7 +40,6 @@ public class SongDAO {
         try (Connection con = ds.getConnection()) {
             String sql = "INSERT INTO MusicTableV2(title, artist, genre, year, length) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
-            //stmt.setInt(1, s.getId());
             stmt.setString(1, title);
             stmt.setString(2, artist);
             stmt.setString(3, genre);
@@ -60,10 +59,10 @@ public class SongDAO {
     public int getLastID() {
         int lastID = -1;
         try (Connection con = ds.getConnection()){
-            PreparedStatement pstmt = con.prepareStatement("SELECT TOP(1) * FROM MusicTableV2 ORDER by id desc");
-            ResultSet rs = pstmt.executeQuery();
-            while(rs.next())
-            {
+            String sql = "SELECT TOP(1) * FROM MusicTableV2 ORDER by id desc";
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            ResultSet rs = preparedStmt.executeQuery();
+            while(rs.next()) {
                 lastID = rs.getInt("id");
             }
             return lastID;
@@ -89,6 +88,7 @@ public class SongDAO {
            stmt.setString(3, s.getGenre());
            stmt.setInt(4, s.getYear());
            stmt.setDouble(5, s.getLength());
+           stmt.setInt(6, s.getId());
            stmt.execute();
         }
         catch (SQLServerException ex) {

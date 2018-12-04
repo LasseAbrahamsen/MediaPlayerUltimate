@@ -21,6 +21,11 @@ public class Playlist {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Playlist{" + "name=" + name + '}';
+    }
+
     public int getID() {
         return id;
     }
