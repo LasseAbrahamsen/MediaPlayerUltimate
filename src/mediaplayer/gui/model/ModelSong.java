@@ -35,7 +35,11 @@ public class ModelSong {
         return logicFacade.fillSongsOnPlaylist(id);
     }
     
-    public void updateSong(Song s) {
-        logicFacade.updateSong(s);
+    public Song updateSong(Song song, String title, String artist, String genre, int year, double length) {
+        return logicFacade.updateSong(song, title, artist, genre, year, length);
+    }
+    
+    public Song createSong(String title, String artist, String genre, int year, double length) {
+        return logicFacade.createSong(title, artist, genre, year, length);
     }
 }

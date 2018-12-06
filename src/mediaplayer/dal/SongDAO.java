@@ -77,25 +77,27 @@ public class SongDAO {
         }
     }
     
-    public void updateSong(Song s)
-    {
+    public Song updateSong(Song song, String title, String artist, String genre, int year, double length) {
         try (Connection con = ds.getConnection()) {
-           String sql = "UPDATE MusicTableV2 SET title=?, artist=?, genre=?, year=?, length=? "
-                   + "WHERE id=?";
-           PreparedStatement stmt = con.prepareStatement(sql);
-           stmt.setString(1, s.getTitle());
-           stmt.setString(2, s.getArtist());
-           stmt.setString(3, s.getGenre());
-           stmt.setInt(4, s.getYear());
-           stmt.setDouble(5, s.getLength());
-           stmt.setInt(6, s.getId());
-           stmt.execute();
+            String query = "UPDATE Song set name = ?,artist = ?,category = ?,time = ?,url = ? WHERE id = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, title);
+            preparedStmt.setString(2, artist);
+            preparedStmt.setString(3, genre);
+            preparedStmt.setInt(4, year);
+            preparedStmt.setDouble(5, length);
+            preparedStmt.setInt(6, song.getId());
+            preparedStmt.executeUpdate();
+            Song s = new Song(title, artist, genre, year, length, song.getId());
+            return s;
         }
         catch (SQLServerException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         catch (SQLException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
     

@@ -65,7 +65,7 @@ public class mainController implements Initializable {
     private MediaPlayer mediaPlayer;
     ModelSong songModel = new ModelSong();
     ModelPlaylist playlistModel = new ModelPlaylist();
-    
+
     @FXML
     private void openNewSong(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
@@ -153,10 +153,47 @@ public class mainController implements Initializable {
         testManager.searchinFilter(observableListSong, textFieldFilter.getText());
     }
     
-    @FXML
-    public void update(ActionEvent event) {
-        Song clickedSong = tableViewSongs.getSelectionModel().getSelectedItem();
-        songModel.updateSong(clickedSong);
+    private void stopMediaPlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            nowPlayingLabel.setText("(none) is playing");
+            mediaPlayer = null;
+        }
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+    /*
+    private void setUpScenes(int whichScene, boolean isEditing) throws IOException {
+        Parent root1;
+        if (whichScene == 1) { //If the scene needed is playlist view
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mediaplayer/gui/view/newPlaylist.fxml"));
+            root1 = (Parent) fxmlLoader.load();
+            if (isEditing) {
+                stopMediaPlayer(); //stop the media. As the playlist that is being edited is the one thats playing
+                fxmlLoader.<NewPlaylistController>getController().setPlaylistInfo(playlistTable.getSelectionModel().getSelectedItem()); // Tells the playlist controller class that the method will be editing its name
+            }
+            fxmlLoader.<NewPlaylistController>getController().setController(this); //Sets controler by default for both creating and editing playlists
+        } else { // If the scene needed is song view
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
+            root1 = (Parent) fxmlLoader.load();
+            if (isEditing) {
+                stopMediaPlayer();
+                fxmlLoader.<NewSongController>getController().setSongInfo(tableViewSongs.getSelectionModel().getSelectedItem());// Tells the song controller class that the method will be editing song info
+            }
+            fxmlLoader.<NewSongController>getController().setController(this);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1, 800, 800));
+        stage.centerOnScreen();
+        stage.show();
+    }*/

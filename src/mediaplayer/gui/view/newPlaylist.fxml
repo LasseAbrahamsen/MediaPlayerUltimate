@@ -16,7 +16,7 @@
             <TextField fx:id="textfieldplaylistName" prefHeight="2.0" prefWidth="187.0" />
          </children>
       </HBox>
-      <Label layoutX="246.0" layoutY="29.0" text="Add new playlist" />
+      <Label fx:id="playlistLabel" layoutX="246.0" layoutY="29.0" text="Add new playlist" />
       <Button layoutX="513.0" layoutY="341.0" mnemonicParsing="false" onAction="#close" text="go back" />
    </children>
 </AnchorPane>

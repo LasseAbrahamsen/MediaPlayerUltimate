@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import mediaplayer.be.Playlist;
 import mediaplayer.dal.PlaylistDAO;
 import mediaplayer.gui.model.ModelPlaylist;
 import mediaplayer.gui.model.ModelSong;
@@ -24,6 +26,12 @@ public class NewPlaylistController implements Initializable {
 
     @FXML
     private TextField textfieldplaylistName;
+    
+    private boolean isEditing = false;
+    private Playlist editingList;
+    NewPlaylistController controller1;
+    
+    @FXML private Label playlistLabel;
 
     /**
      * Initializes the controller class.
@@ -42,5 +50,21 @@ public class NewPlaylistController implements Initializable {
         Stage stage = (Stage) textfieldplaylistName.getScene().getWindow();
         stage.close();
     }
+    
+    public void setPlaylistInfo(Playlist selectedItem) {
+        isEditing = true;
+        editingList = selectedItem;
+        textfieldplaylistName.setText(selectedItem.getName());
+    }
+    
+    public void setController(NewPlaylistController controller1) {
+        this.controller1 = controller1;
+        if (isEditing) {
+            playlistLabel.setText("Editing Playlist");
+        } else {
+            playlistLabel.setText("Create Playlist");
+        }
+    }
+
     
 }
