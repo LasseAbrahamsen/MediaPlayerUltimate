@@ -57,7 +57,8 @@ public class PlaylistSongDAO {
                 int year = rs.getInt("year");
                 double length = rs.getDouble("length");
                 int idd = rs.getInt("id");
-                Song s = new Song(title, artist, genre, year, length, idd);
+                String location = rs.getString("location");
+                Song s = new Song(title, artist, genre, year, length, idd, location);
                 songsList.add(s);
             }
         } catch (SQLServerException ex) {

@@ -111,7 +111,7 @@ public class mainController implements Initializable {
     @FXML
     private void testCreateSong(ActionEvent event) throws IOException {
         SongDAO test = new SongDAO();
-        test.createSong("something", "Lasse", "Pop", 2018, 13.38);
+        //test.createSong("something", "Lasse", "Pop", 2018, 13.38,);
     }
     
     @FXML

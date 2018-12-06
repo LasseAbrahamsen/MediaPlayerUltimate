@@ -11,19 +11,29 @@ public class Song {
     private int year;
     private double length;
     private int id;
+    private String location;
    
-    public Song(String title, String artist, String genre, int year, double length, int id) {
+    public Song(String title, String artist, String genre, int year, double length, int id, String location) {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.year = year;
         this.length = length;
         this.id = id;
+        this.location = location;
     }
 
     @Override
     public String toString() {
         return "Song{" + "title=" + title + ", artist=" + artist + ", genre=" + genre + ", year=" + year + ", length=" + length + ", id=" + id + '}';
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
     
     public int getId() {

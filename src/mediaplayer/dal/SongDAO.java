@@ -35,18 +35,19 @@ public class SongDAO {
         }
     }
     
-    public Song createSong(String title, String artist, String genre, int year, double length) {
+    public Song createSong(String title, String artist, String genre, int year, double length, String location) {
         Song s = null;
         try (Connection con = ds.getConnection()) {
-            String sql = "INSERT INTO MusicTableV2(title, artist, genre, year, length) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO MusicTableV2(title, artist, genre, year, length, location) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, title);
             stmt.setString(2, artist);
             stmt.setString(3, genre);
             stmt.setInt(4, year);
             stmt.setDouble(5, length);
+            stmt.setString(6, location);
             stmt.execute();
-            s = new Song(title, artist, genre, year, length, getLastID());
+            s = new Song(title, artist, genre, year, length, getLastID(), s.getLocation());
             return s;
         } catch (SQLServerException ex) {
             Logger.getLogger(SongDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,7 +78,7 @@ public class SongDAO {
         }
     }
     
-    public Song updateSong(Song song, String title, String artist, String genre, int year, double length) {
+    public Song updateSong(Song song, String title, String artist, String genre, int year, double length, String location) {
         try (Connection con = ds.getConnection()) {
             String query = "UPDATE MusicTableV2 set title=?, artist=?, genre=?, year=?, length=? WHERE id=?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -88,7 +89,7 @@ public class SongDAO {
             preparedStmt.setDouble(5, length);
             preparedStmt.setInt(6, song.getId());
             preparedStmt.executeUpdate();
-            Song s = new Song(title, artist, genre, year, length, song.getId());
+            Song s = new Song(title, artist, genre, year, length, song.getId(), location);
             return s;
         }
         catch (SQLServerException ex) {
@@ -127,7 +128,8 @@ public class SongDAO {
                 int year = rs.getInt("year");
                 double length = rs.getDouble("length");
                 int id = rs.getInt("id");
-                Song s = new Song(title, artist, genre, year, length, id);
+                String location = rs.getString("location");
+                Song s = new Song(title, artist, genre, year, length, id, location);
                 songs.add(s);
             }
         } catch (SQLServerException ex) {

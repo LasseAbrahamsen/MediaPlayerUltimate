@@ -37,12 +37,12 @@ public class Facade {
         return psdao.fillSongsOnPlaylist(id);
     }
     
-    public Song updateSong(Song song, String title, String artist, String genre, int year, double length) {
-        return sdao.updateSong(song, title, artist, genre, year, length);
+    public Song updateSong(Song song, String title, String artist, String genre, int year, double length, String location) {
+        return sdao.updateSong(song, title, artist, genre, year, length, location);
     }
     
-    public Song createSong(String title, String artist, String genre, int year, double length) {
-        return sdao.createSong(title, artist, genre, year, length);
+    public Song createSong(String title, String artist, String genre, int year, double length, String location) {
+        return sdao.createSong(title, artist, genre, year, length, location);
     }
     
 }
