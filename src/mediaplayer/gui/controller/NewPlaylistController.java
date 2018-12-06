@@ -57,6 +57,7 @@ public class NewPlaylistController implements Initializable {
         textfieldplaylistName.setText(selectedItem.getName());
     }
     
+    //?
     public void setController(NewPlaylistController controller1) {
         this.controller1 = controller1;
         if (isEditing) {

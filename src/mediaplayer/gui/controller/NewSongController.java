@@ -95,6 +95,7 @@ public class NewSongController implements Initializable {
         stage.close();
     }
     
+    //?
     public void setController(NewPlaylistController controller1) {
         this.controller1 = controller1;
         if (isEditing) {

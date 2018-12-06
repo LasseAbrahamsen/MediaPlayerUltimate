@@ -60,7 +60,6 @@
                      </font></Label>
                   <TableView fx:id="SongsOnPlaylistTable" prefHeight="437.0" prefWidth="203.0">
                     <columns>
-                      <TableColumn fx:id="songsOnPlaylistID" prefWidth="39.0" text="ID" />
                       <TableColumn fx:id="songsOnPlaylistName" prefWidth="161.0" text="Name" />
                     </columns>
                   </TableView>

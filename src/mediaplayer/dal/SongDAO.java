@@ -79,7 +79,7 @@ public class SongDAO {
     
     public Song updateSong(Song song, String title, String artist, String genre, int year, double length) {
         try (Connection con = ds.getConnection()) {
-            String query = "UPDATE Song set name = ?,artist = ?,category = ?,time = ?,url = ? WHERE id = ?";
+            String query = "UPDATE MusicTableV2 set title=?, artist=?, genre=?, year=?, length=? WHERE id=?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString(1, title);
             preparedStmt.setString(2, artist);
