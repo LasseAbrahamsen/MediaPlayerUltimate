@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
-import javafx.collections.FXCollections;
 import mediaplayer.be.Song;
 
 /**
@@ -35,6 +34,7 @@ public class SongDAO {
         }
     }
     
+    //The method creates a song with variables title, artist, genre, year of creation, length and location on the disc.
     public Song createSong(String title, String artist, String genre, int year, double length, String location) {
         Song s = null;
         try (Connection con = ds.getConnection()) {
@@ -57,6 +57,7 @@ public class SongDAO {
         return s;
     }
     
+    //The method is for song creation. It gives us the last ID in the song list.
     public int getLastID() {
         int lastID = -1;
         try (Connection con = ds.getConnection()){
@@ -78,6 +79,7 @@ public class SongDAO {
         }
     }
     
+    //Updating the song, if the user wants to edit a song that already exists in the database.
     public Song updateSong(Song song, String title, String artist, String genre, int year, double length, String location) {
         try (Connection con = ds.getConnection()) {
             String query = "UPDATE MusicTableV2 set title=?, artist=?, genre=?, year=?, length=? WHERE id=?";
@@ -102,6 +104,7 @@ public class SongDAO {
         }
     }
     
+    //Deletes a song from the database.
     public void deleteSong(Song s) {
         try (Connection con = ds.getConnection()) {
             String sql = "DELETE FROM MusicTableV2 WHERE id=?";
@@ -115,6 +118,7 @@ public class SongDAO {
         }
     }
     
+    //returns a list of all the songs, used for the song list.
     public List<Song> getAllSongs() {
         List<Song> songs = new ArrayList();
         try (Connection con = ds.getConnection()) {

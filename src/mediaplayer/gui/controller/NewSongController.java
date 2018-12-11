@@ -53,11 +53,11 @@ public class NewSongController implements Initializable {
         if (name != null && name.length() > 0 && name.length() < 50 && length > 0) {
             if (!isEditing) { 
                                     //title, artist, genre, year, length
-                songModel.createSong(name, textfieldArtist.getText(), name, length, length);
+                songModel.createSong(name, textfieldArtist.getText(), name, length, length, textfieldFile.getText());
                         //.createSong(name, textfieldArtist.getText(), genre, year, length);
                 testLabel.setText("Created song");
             } else { 
-                songModel.updateSong(songToAdd, name, textfieldArtist.getText(), name, length, length);
+                songModel.updateSong(songToAdd, name, textfieldArtist.getText(), name, length, length, textfieldFile.getText());
                 testLabel.setText("Updated song");
             }
         } else {

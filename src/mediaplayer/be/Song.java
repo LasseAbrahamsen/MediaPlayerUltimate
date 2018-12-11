@@ -12,6 +12,7 @@ public class Song {
     private double length;
     private int id;
     private String location;
+    private int locationinlist;
    
     public Song(String title, String artist, String genre, int year, double length, int id, String location) {
         this.title = title;
@@ -26,6 +27,14 @@ public class Song {
     @Override
     public String toString() {
         return "Song{" + "title=" + title + ", artist=" + artist + ", genre=" + genre + ", year=" + year + ", length=" + length + ", id=" + id + '}';
+    }
+
+    public int getLocationinlist() {
+        return locationinlist;
+    }
+
+    public void setLocationinlist(int locationinlist) {
+        this.locationinlist = locationinlist;
     }
 
     public String getLocation() {

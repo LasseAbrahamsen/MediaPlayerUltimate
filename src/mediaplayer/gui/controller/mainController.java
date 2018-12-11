@@ -17,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -29,8 +28,6 @@ import javafx.stage.Stage;
 import mediaplayer.be.Playlist;
 import mediaplayer.be.Song;
 import mediaplayer.bll.Manager;
-import mediaplayer.dal.SongDAO;
-import mediaplayer.dal.PlaylistDAO;
 import mediaplayer.gui.model.ModelPlaylist;
 import mediaplayer.gui.model.ModelSong;
 
@@ -65,7 +62,7 @@ public class mainController implements Initializable {
     private MediaPlayer mediaPlayer;
     ModelSong songModel = new ModelSong();
     ModelPlaylist playlistModel = new ModelPlaylist();
-
+    
     @FXML
     private void openNewSong(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
@@ -84,6 +81,7 @@ public class mainController implements Initializable {
         stage.show();
     }
     
+    //Initialize sets the table column information.
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         observableListSong = songModel.getSongs();
@@ -103,15 +101,9 @@ public class mainController implements Initializable {
         playlistTimeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         playlistTable.setItems(observableListPlaylist);
         
-        songsOnPlaylistID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //songsOnPlaylistID.setCellValueFactory(new PropertyValueFactory<>("songname"));
         songsOnPlaylistName.setCellValueFactory(new PropertyValueFactory<>("title"));
         SongsOnPlaylistTable.setItems(observableListSong);
-    }    
-    
-    @FXML
-    private void testCreateSong(ActionEvent event) throws IOException {
-        SongDAO test = new SongDAO();
-        //test.createSong("something", "Lasse", "Pop", 2018, 13.38,);
     }
     
     @FXML
@@ -135,18 +127,21 @@ public class mainController implements Initializable {
         songModel.fillSongsOnPlaylist(1);
     }
     
+    //Deletes song both from the list and in the database.
     @FXML
     public void deleteSelectedSong(ActionEvent event) {
         Song clickedSong = tableViewSongs.getSelectionModel().getSelectedItem();
         songModel.deleteSong(clickedSong);
     }
     
+    //Deletes playlist both from the list and in the database.
     @FXML
     public void deleteSelectedPlaylist(ActionEvent event) {
         Playlist clickedPlaylist = playlistTable.getSelectionModel().getSelectedItem();
         playlistModel.deletePlaylist(clickedPlaylist);
     }
     
+    //Supposed to use the filter textfield, could not get it working.
     @FXML
     public void searchSong(ActionEvent event) {
         Manager testManager = new Manager();
@@ -154,46 +149,7 @@ public class mainController implements Initializable {
     }
     
     private void stopMediaPlayer() {
-        if (mediaPlayer != null) {
             mediaPlayer.stop();
             nowPlayingLabel.setText("(none) is playing");
-            mediaPlayer = null;
-        }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-
-    /*
-    private void setUpScenes(int whichScene, boolean isEditing) throws IOException {
-        Parent root1;
-        if (whichScene == 1) { //If the scene needed is playlist view
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mediaplayer/gui/view/newPlaylist.fxml"));
-            root1 = (Parent) fxmlLoader.load();
-            if (isEditing) {
-                stopMediaPlayer(); //stop the media. As the playlist that is being edited is the one thats playing
-                fxmlLoader.<NewPlaylistController>getController().setPlaylistInfo(playlistTable.getSelectionModel().getSelectedItem()); // Tells the playlist controller class that the method will be editing its name
-            }
-            fxmlLoader.<NewPlaylistController>getController().setController(this); //Sets controler by default for both creating and editing playlists
-        } else { // If the scene needed is song view
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mediaplayer/gui/view/newSong.fxml"));
-            root1 = (Parent) fxmlLoader.load();
-            if (isEditing) {
-                stopMediaPlayer();
-                fxmlLoader.<NewSongController>getController().setSongInfo(tableViewSongs.getSelectionModel().getSelectedItem());// Tells the song controller class that the method will be editing song info
-            }
-            fxmlLoader.<NewSongController>getController().setController(this);
-        }
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1, 800, 800));
-        stage.centerOnScreen();
-        stage.show();
-    }*/

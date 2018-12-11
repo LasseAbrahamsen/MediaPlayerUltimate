@@ -16,7 +16,6 @@ public class DBConnect {
     public List<String> getDatabaseInfo() throws IOException {
         List<String> loginInfo = new ArrayList();
         String source = "C:\\Users\\a\\Desktop\\MediaPlayer\\MediaPlayerUltimate\\src\\mediaplayer\\dal\\loginInfo.txt";
-        //String source = "loginInfo.txt";
         File file = new File(source);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) 

@@ -57,10 +57,11 @@ public class PlaylistDAO {
         return p;
     }
     
+    //gets the last ID in the list for playlist creation.
     public int getLastIDPlaylist() {
         int lastID = -1;
         try (Connection con = ds.getConnection()){
-            PreparedStatement pstmt = con.prepareStatement("SELECT TOP(1) * FROM PlaylistTable ORDER by id desc");
+            PreparedStatement pstmt = con.prepareStatement("SELECT TOP(1) * FROM PlaylistTable ORDER by PlaylistID desc");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
             {
@@ -80,7 +81,7 @@ public class PlaylistDAO {
     
     public void updatePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()){
-           String sql = "UPDATE PLAYLIST SET name=? WHERE id=?";
+           String sql = "UPDATE PLAYLIST SET name=? WHERE PlaylistID=?";
            PreparedStatement stmt = con.prepareStatement(sql);
            stmt.setString(1, p.getName());
            stmt.execute();
@@ -95,7 +96,7 @@ public class PlaylistDAO {
     
     public void deletePlaylist(Playlist p) {
         try (Connection con = ds.getConnection()) {
-            String sql = "DELETE FROM playlistTable WHERE id=?";
+            String sql = "DELETE FROM playlistTable WHERE PlaylistID=?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, p.getID());
             stmt.execute();
@@ -106,6 +107,7 @@ public class PlaylistDAO {
         }
     }
     
+    //Loads all playlists
     public List<Playlist> getAllPlaylists(){
         List<Playlist> playlists = new ArrayList();
         try (Connection con = ds.getConnection()) {
@@ -114,7 +116,7 @@ public class PlaylistDAO {
             ResultSet rs = statement.executeQuery(sqlStatement);
             while(rs.next()) {
                 String name = rs.getString("name");
-                int id = rs.getInt("id");
+                int id = rs.getInt("PlaylistID");
                 List<Song> allSongs = playlistSongDAO.fillSongsOnPlaylist(id);
                 Playlist p = new Playlist(name, allSongs.size(), countTime(allSongs), id);
                 p.setSongList(allSongs);
@@ -128,6 +130,7 @@ public class PlaylistDAO {
         return playlists;
     }
     
+    //This method is used to return the length of all songs in the playlist so it can be displayed in the GUI.
     private int countTime(List<Song> allSongs) {
         int time = 0;
         for (Song allSong : allSongs) {
